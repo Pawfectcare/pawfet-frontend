@@ -1,0 +1,79 @@
+/* Payment Card */
+.payment-card{
+    max-width: 1020px;
+    margin: 20px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Title */
+  .payment-card .payment-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #1f2937;
+  }
+  
+  /* Payment Options */
+  .payment-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    transition: all 0.2s ease;
+    margin-bottom: 14px;
+  }
+  
+  .payment-option:hover {
+    background: #f3f4f6;
+  }
+  
+  .payment-option.active {
+    border: 2px solid #2563eb;
+    background: #eff6ff;
+  }
+  
+  /* Payment Icons */
+  .payment-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+  
+  /* Confirm Button */
+  .payment-card .confirm-btn {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .payment-card .confirm-btn:hover {
+    background: #1d4ed8;
+  }
+  
+  .payment-card .confirm-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+  

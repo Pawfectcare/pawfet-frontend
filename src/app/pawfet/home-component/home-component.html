@@ -1,0 +1,48 @@
+<div class="home-container">
+
+    <div class="inner-container">
+  
+      <header class="home-header">
+        <div class="welcome-text">
+          Welcome back, <strong>{{ username }}</strong>
+        </div>
+        <div class="profile-icon">
+          <img src="assets/user-icon.png" alt="User Icon" />
+        </div>
+      </header>
+  
+      <div class="welcome-card">
+        <img src="assets/puppy.png" alt="Cute Dog" class="dog-image" />
+        <div class="overlay-text">
+          <h2>Welcome to Pawfect DayCare!</h2>
+          <p>Your one-stop solution for pet care.</p>
+        </div>
+      </div>
+  
+      <div class="action-buttons">
+        <button class="primary" (click)="bookDaycare()">
+          <i class="fas fa-paw"></i> Book Daycare
+        </button>
+        <button class="secondary" (click)="shopNow()">
+          <i class="fas fa-shopping-bag"></i> Shop Now
+        </button>
+      </div>
+  
+      <div class="secondary-actions">
+    
+        <button (click)="viewDogProfile()">
+          View Dog Profile <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+  
+    </div>
+  
+    <!-- <nav class="bottom-nav">
+      <button><i class="fas fa-home"></i><span>Home</span></button>
+      <button><i class="fas fa-calendar-alt"></i><span>Bookings</span></button>
+      <button><i class="fas fa-envelope"></i><span>Messages</span></button>
+      <button><i class="fas fa-user"></i><span>Profile</span></button>
+    </nav> -->
+  
+  </div>
+  

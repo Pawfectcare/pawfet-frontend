@@ -1,0 +1,42 @@
+<div class="booking-card">
+  <h2 class="title">Book Dog Daycare</h2>
+
+  <form [formGroup]="bookingForm" (ngSubmit)="goToPayment()" class="booking-form">
+
+    <!-- Dog ID -->
+    <label class="form-label">Dog ID</label>
+    <input formControlName="dogId" type="number" class="form-input" placeholder="Enter Dog ID" required />
+
+    <!-- Select Date -->
+    <label class="form-label">Select Date</label>
+    <input formControlName="date" type="date" class="form-input" required />
+
+    <!-- Select Time -->
+    <label class="form-label">Select Time</label>
+    <div class="time-slot-container">
+      <button type="button"
+        *ngFor="let time of ['8:00 AM','9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM']"
+        class="time-slot"
+        (click)="bookingForm.controls['timeSlot'].setValue(time)"
+        [class.active]="bookingForm.value.timeSlot === time">
+        {{ time }}
+      </button>
+    </div>
+
+    <!-- Special Instructions -->
+    <label class="form-label">Special Instructions</label>
+    <textarea formControlName="notes" class="form-textarea"
+      placeholder="Any special needs or requests?"></textarea>
+
+    <!-- Select Daycare -->
+    <label class="form-label">Select Daycare</label>
+    <select formControlName="daycareCenterId" class="form-input" required>
+      <option *ngFor="let center of centers" [value]="center.id">
+        {{ center.name }} - {{ center.address }}
+      </option>
+    </select>
+
+    <!-- Submit -->
+    <button type="submit" class="submit-btn">Book Now</button>
+  </form>
+</div>

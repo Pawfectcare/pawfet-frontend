@@ -1,0 +1,110 @@
+/* Booking Daycare Card */
+.booking-card {
+    max-width: 1020px;
+    margin: 20px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: 'Inter', sans-serif;
+  }
+  
+  
+  /* Title */
+  .booking-card .title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    text-align: center;
+    color: #1f2937;
+  }
+  
+  /* Form Layout */
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  /* Labels */
+  .booking-card .form-label {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #374151;
+  }
+  
+  /* Inputs & Select */
+  .booking-card .form-input,
+  .booking-card .form-textarea,
+  .booking-card select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background: #f9fafb;
+    transition: border 0.2s;
+  }
+  
+  .booking-card .form-input:focus,
+  .booking-card .form-textarea:focus,
+  .booking-card select:focus {
+    border: 1px solid #2563eb;
+    background: #ffffff;
+  }
+  
+  /* Textarea */
+  .booking-card .form-textarea {
+    min-height: 80px;
+    resize: none;
+  }
+  
+  /* Time Slots */
+  .time-slot-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .time-slot {
+    padding: 8px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #f9fafb;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+  
+  .time-slot:hover {
+    background: #e5e7eb;
+  }
+  
+  .time-slot.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+  }
+  
+  /* Submit Button */
+  .booking-card .submit-btn {
+    margin-top: 20px;
+    padding: 14px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .booking-card .submit-btn:hover {
+    background: #1d4ed8;
+  }
+  
