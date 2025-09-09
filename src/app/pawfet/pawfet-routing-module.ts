@@ -5,6 +5,9 @@ import { LoginComponent } from './login-component/login-component';
 import { SignupComponent } from './signup-component/signup-component';
 import { BookDaycare } from './book-daycare/book-daycare';
 import { PaymentComponent } from './payment-component/payment-component';
+import { CartComponent } from './cart-component/cart-component';
+import { ShopComponent } from './shop-component/shop-component';
+import { DogProfile } from './dog-profile/dog-profile';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -12,6 +15,10 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent},
   { path: 'book-daycare', component: BookDaycare},
   { path: 'payment', component: PaymentComponent},
+  { path: 'shop', component: ShopComponent},
+  { path: 'cart', component: CartComponent},
+  { path: 'dogprofile', component: DogProfile},
+
   
 
 ];

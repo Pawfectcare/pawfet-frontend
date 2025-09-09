@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CartItem } from '../pawfet/cart-component/cart-component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Authservice {
     // Now pointing to API Gateway
-    private apiBase = 'http://localhost:8082/daycare/bookings';
+    private apiBase = 'http://localhost:8081/daycare/bookings';
 
     constructor(private http: HttpClient) {}
   
@@ -29,20 +30,45 @@ export class Authservice {
   
     // All booking-related requests now go through the Gateway
     getDaycareCenters(): Observable<any[]> {
-      const token = localStorage.getItem('auth_token');
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.get<any[]>(`${this.apiBase}/daycare/centers`, { headers });
+      
+      return this.http.get<any[]>(`${this.apiBase}/daycare/centers`);
     }
   
     bookDaycare(bookingPayload: any): Observable<any> {
-      const token = localStorage.getItem('auth_token');
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.post<any>(`${this.apiBase}`, bookingPayload, { headers });
+      
+      return this.http.post<any>(`${this.apiBase}`, bookingPayload);
     }
   
     payForBooking(bookingId: number): Observable<any> {
-      const token = localStorage.getItem('auth_token');
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.post(`${this.apiBase}/${bookingId}/pay`, {}, { headers });
+      
+      return this.http.post(`${this.apiBase}/${bookingId}/pay`, {},  { responseType: 'text' }  );
     }
+
+    getProductsByCategory(category: string) {
+      return this.http.get<any[]>(`http://localhost:8082/shop/products/by-category/${category}`);
+    }
+    
+    // Add item to cart
+    addToCart(userId: number, productId: number, qty: number) {
+      return this.http.post<any>(`http://localhost:8082/shop/cart`, { 
+        user_id: userId, 
+        product_id: productId, 
+        quantity: qty 
+      });
+    }
+    getProductsByIds(productIds: number[]): Observable<any[]> {
+      return this.http.get<any[]>(`http://localhost:8082/shop/products/`, {
+        params: { product_ids: productIds.join(',') }
+      });
+    }
+    getCart(userId: number): Observable<CartItem[]> {
+      return this.http.get<CartItem[]>(`http://localhost:8082/shop/cart/${userId}`);
+    }
+  
+    
+    // Pay for Shop (final order submission)
+    payForShopByUserId(userId: number) {
+      return this.http.post<any>(`http://localhost:8082/shop/products/shop/pay/${userId}`, {});
+    }
+    
   }

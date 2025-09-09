@@ -11,11 +11,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './payment-component.css'
 })
 export class PaymentComponent {
-
-  // Default selection
   selectedPaymentMethod: string = '';
 
-  // Static payment methods (with icons)
   paymentMethods = [
     { name: 'Google Pay', icon: 'assets/payments/google-pay.png' },
     { name: 'PhonePe', icon: 'assets/payments/phonepe.png' },
@@ -25,40 +22,57 @@ export class PaymentComponent {
     { name: 'Net Banking', icon: 'assets/payments/netbanking.png' }
   ];
 
-  constructor(
-    private bookingService: Authservice,
-    private router: Router
-  ) {}
+  constructor(private auth: Authservice, private router: Router) {}
 
-  submitFinalBooking() {
+  submitPayment() {
     if (!this.selectedPaymentMethod) {
-      alert('Please select a payment method first!');
+      alert('Please select a payment method!');
       return;
     }
 
-    const bookingData = history.state.bookingData;
+    const stateData: any = history.state;
 
-    const payload = {
-      dogId: bookingData.dogId,
-      date: bookingData.date,
-      timeSlot: bookingData.timeSlot,
-      notes: bookingData.notes,
-      daycareCenter: { id: bookingData.daycareCenterId }
-    };
+    // Check if it's a cart purchase
+if (stateData.cartData) {
+  const userId = stateData.cartData.userId; // only need userId now
+  this.auth.payForShopByUserId(userId).subscribe({
+    next: () => {
+      alert(`Payment successful via ${this.selectedPaymentMethod}`);
+      this.router.navigate(['/pawfetModule/home']);
+    },
+    error: () => alert('Payment failed')
+  });
+  return;
+}
 
-    this.bookingService.bookDaycare(payload).subscribe({
-      next: (bookingCreated) => {
-        const bookingId = bookingCreated.id;
+    // Check if it's a daycare booking
+    if (stateData.bookingData) {
+      const bookingData = stateData.bookingData;
+      const payload = {
+        dogId: bookingData.dogId,
+        date: bookingData.date,
+        timeSlot: bookingData.timeSlot,
+        notes: bookingData.notes,
+        daycareCenter: { id: bookingData.daycareCenterId }
+      };
 
-        this.bookingService.payForBooking(bookingId).subscribe({
-          next: () => {
-            alert(`Payment successful via ${this.selectedPaymentMethod}`);
-            this.router.navigate(['/pawfetModule/home']);
-          },
-          error: () => alert('Payment failed after booking')
-        });
-      },
-      error: () => alert('Booking failed')
-    });
+      this.auth.bookDaycare(payload).subscribe({
+        next: (bookingCreated) => {
+          const bookingId = bookingCreated.id;
+          this.auth.payForBooking(bookingId).subscribe({
+            next: () => {
+              alert(`Payment successful via ${this.selectedPaymentMethod}`);
+              this.router.navigate(['/pawfetModule/home']);
+            },
+            error: () => alert('Payment failed after booking')
+          });
+        },
+        error: () => alert('Booking failed')
+      });
+      return;
+    }
+
+    // No valid data passed
+    alert('No valid data found for payment!');
   }
 }

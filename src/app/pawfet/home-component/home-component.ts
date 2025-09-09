@@ -24,12 +24,12 @@ export class HomeComponent implements OnInit {
   }
 
   shopNow() {
-    this.router.navigate(['/shop']);
+    this.router.navigate(['/pawfetModule/shop']);
   }
 
 
 
   viewDogProfile() {
-    this.router.navigate(['/dog-profile']);
+    this.router.navigate(['/pawfetModule/dogprofile']);
   }
 }

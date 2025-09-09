@@ -3,33 +3,33 @@
     <h2 class="payment-title">Choose a payment method</h2>
 
     <div class="payment-option" (click)="selectedPaymentMethod='Google Pay'" [class.active]="selectedPaymentMethod==='Google Pay'">
-      <img src="assets/payments/google-pay.png" alt="Google Pay" class="payment-icon" />
+      <img src="assets/payment/GooglePay.png" alt="Google Pay" class="payment-icon" />
       <span>Google Pay</span>
     </div>
 
     <div class="payment-option" (click)="selectedPaymentMethod='PhonePe'" [class.active]="selectedPaymentMethod==='PhonePe'">
-      <img src="assets/payments/phonepe.png" alt="PhonePe" class="payment-icon" />
+      <img src="assets/payment/Phonepay.png" alt="PhonePe" class="payment-icon" />
       <span>PhonePe</span>
     </div>
 
     <div class="payment-option" (click)="selectedPaymentMethod='Paytm'" [class.active]="selectedPaymentMethod==='Paytm'">
-      <img src="assets/payments/paytm.png" alt="Paytm" class="payment-icon" />
+      <img src="assets/payment/Paytm.png" alt="Paytm" class="payment-icon" />
       <span>Paytm</span>
     </div>
 
     <div class="payment-option" (click)="selectedPaymentMethod='Debit Card'" [class.active]="selectedPaymentMethod==='Debit Card'">
-      <img src="assets/payments/debit-card.png" alt="Debit Card" class="payment-icon" />
+      <img src="assets/payment/debitcard2.jpg" alt="Debit Card" class="payment-icon" />
       <span>Debit Card</span>
     </div>
 
     <div class="payment-option" (click)="selectedPaymentMethod='Credit Card'" [class.active]="selectedPaymentMethod==='Credit Card'">
-      <img src="assets/payments/credit-card.png" alt="Credit Card" class="payment-icon" />
+      <img src="assets/payment/CreditCard.png" alt="Credit Card" class="payment-icon" />
       <span>Credit Card</span>
     </div>
 
     
 
-    <button class="confirm-btn" (click)="submitFinalBooking()" [disabled]="!selectedPaymentMethod">
+    <button class="confirm-btn" (click)="submitPayment()" [disabled]="!selectedPaymentMethod">
       Confirm Booking
     </button>
   </div>
