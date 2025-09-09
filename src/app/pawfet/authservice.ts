@@ -74,7 +74,7 @@ export class Authservice {
     
     // Pay for Shop (final order submission)
     payForShopByUserId(userId: number) {
-      return this.http.post<any>(`http://localhost:8082/shop/products/shop/pay/${userId}`, {});
+      return this.http.post<any>(`http://localhost:8082/shop/cart/shop/pay/${userId}`, {});
     }
     
   }
