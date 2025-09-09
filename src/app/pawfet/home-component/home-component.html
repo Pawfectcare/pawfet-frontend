@@ -6,8 +6,17 @@
         <div class="welcome-text">
           Welcome back, <strong>{{ username }}</strong>
         </div>
-        <div class="profile-icon">
-          <img src="assets/user-icon.png" alt="User Icon" />
+        <div class="profile-wrapper">
+          <div class="profile-icon">
+            <img src="assets/usericon.png" alt="User Icon" (click)="toggleDropdown()" />
+          </div>
+  
+          <div class="dropdown" *ngIf="dropdownOpen">
+            <p class="dropdown-username">{{ username }}</p>
+            <button class="logout-btn" (click)="logout()">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+          </div>
         </div>
       </header>
   

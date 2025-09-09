@@ -29,6 +29,42 @@
     align-items: center;
     margin-bottom: 25px;
   }
+  .dropdown {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    width: 160px;
+    z-index: 100;
+    text-align: left;
+  }
+  
+  .dropdown-username {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #374151;
+  }
+  
+  .logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #e63946;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+  }
+  .logout-btn:hover {
+    background: #b91c1c;
+  }
   
   .welcome-text {
     font-size: 1.4rem;
@@ -36,9 +72,11 @@
   }
   
   .profile-icon img {
-    width: 50px;
-    height: 50px;
+    width: 32px;  /* good size */
+    height: 32px;
     border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
   }
   
   /* Welcome card with dog image and overlay text */

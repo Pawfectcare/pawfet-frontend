@@ -27,16 +27,50 @@ export class LoginComponent {
     });
   }
 
+  // onSubmit() {
+  //   if (this.loginForm.valid) {
+  //     const username = this.loginForm.value.username;
+  //     const password = this.loginForm.value.password;
+  //     this.authService.login({username,password }).subscribe({
+  //       next: (res) => {
+  //         console.log('Login successful, token:', res.access_token);
+  //         localStorage.setItem('auth_token', res.access_token);
+  //         localStorage.setItem('username', res.username); 
+  //         alert('Login succefull');
+  //         this.router.navigate(['/pawfetModule/home']);
+        
+  //       },
+  //       error: (err) => {
+  //         console.error('Login failed:', err);
+  //         alert('Invalid username or password');
+  //       }
+  //     });
+  //   }
+  // }
+
   onSubmit() {
     if (this.loginForm.valid) {
       const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
-      this.authService.login({username,password }).subscribe({
+
+      this.authService.login({ username, password }).subscribe({
         next: (res) => {
           console.log('Login successful, token:', res.access_token);
+
+          // ✅ Save token
           localStorage.setItem('auth_token', res.access_token);
-          alert('Login succefull');
-        
+
+          // ✅ Now call /auth/me to fetch user info
+          this.authService.getUserDetails().subscribe({
+            next: (user) => {
+              localStorage.setItem('username', user.username);
+              alert(`Welcome, ${user.username}!`);
+              this.router.navigate(['/pawfetModule/home']);
+            },
+            error: () => {
+              alert('Failed to fetch user details');
+            }
+          });
         },
         error: (err) => {
           console.error('Login failed:', err);
@@ -53,8 +87,6 @@ export class LoginComponent {
       
     });
   }
-  goBack(): void {
-    this.router.navigate(['/pawfetModule/home']);
-  }
+
 
 }

@@ -23,12 +23,18 @@ export class Authservice {
       return this.http.post<any>(`http://localhost:8000/auth/token`, body.toString(), { headers });
     }
   
-    // Signup also goes to FastAPI
+    
     signup(data: any) {
       return this.http.post<any>('http://localhost:8000/auth/signup', data);
     }
+    getUserDetails() {
+      const token = localStorage.getItem('auth_token');
+      return this.http.get<any>('http://localhost:8000/auth/me', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+    }
   
-    // All booking-related requests now go through the Gateway
+   
     getDaycareCenters(): Observable<any[]> {
       
       return this.http.get<any[]>(`${this.apiBase}/daycare/centers`);
