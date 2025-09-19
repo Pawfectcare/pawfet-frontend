@@ -20,18 +20,28 @@
     display: block;
   }
   
-  /* Input styling */
-  .auth-form input[type="text"] {
-    width: 100%;
-    padding: 10px 14px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    transition: all 0.2s ease;
-    box-sizing: border-box;  /* 👈 fixes the overflow */
-  }
-  
+
+  /* Input styling for all fields */
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;  /* 👈 fixes the overflow */
+}
+
+.auth-form input[type="text"]:focus,
+.auth-form input[type="email"]:focus,
+.auth-form input[type="password"]:focus {
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 2px rgba(63,81,181,0.2);
+}
+
   .auth-form input[type="text"]:focus {
     border-color: #3f51b5;
     box-shadow: 0 0 0 2px rgba(63,81,181,0.2);

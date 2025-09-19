@@ -1,12 +1,17 @@
 <div class="cart-container">
-  <h2>Your Cart</h2>
+  <h2 class="cart-title">
+   
+    My Cart
+  </h2>
 
   <div *ngIf="cart.length > 0" class="cart-items">
     <div class="cart-item" *ngFor="let item of cart">
       <img
-  [src]="getImageUrl(item.product_id)"
-  alt="{{ item.product_name }}"
-  class="product-image"/>
+        [src]="getImageUrl(item.product_id)"
+        alt="{{ item.product_name }}"
+        class="product-image"
+      />
+
       <div class="item-details">
         <h3>{{ item.product_name }}</h3>
         <p>₹{{ item.price }}</p>
@@ -14,8 +19,12 @@
         <p>Subtotal: ₹{{ item.price * item.quantity }}</p>
       </div>
     </div>
-    <div class="cart-summary">
+
+    <div class="cart-total">
       <h3>Total: ₹{{ cartTotal() }}</h3>
+    </div>
+
+    <div class="cart-action">
       <button (click)="goToPayment()">Confirm and Buy</button>
     </div>
   </div>

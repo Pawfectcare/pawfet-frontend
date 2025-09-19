@@ -11,16 +11,26 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./shop-component.css']
 })
 export class ShopComponent {
-  categories: ('food' | 'toys' | 'grooming')[] = ['food', 'toys', 'grooming'];
-  selectedCategory: 'food' | 'toys' | 'grooming' = 'food';
+  categories: ('Food' | 'Toys' | 'Grooming')[] = ['Food', 'Toys', 'Grooming'];
+  selectedCategory: 'Food' | 'Toys' | 'Grooming' = 'Food';
 
   products: Product[] = [];
-  userId = 1;
+ userId!: number; 
 
   constructor(private auth: Authservice, private router: Router) {}
 
   ngOnInit(): void {
-    this.loadProducts();
+
+     this.auth.getUserDetails().subscribe({
+      next: (user) => {
+        this.userId = user.id;  
+        this.loadProducts();
+      },
+      error: () => {
+        alert('User not logged in!');
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
   loadProducts() {
@@ -35,7 +45,7 @@ export class ShopComponent {
     });
   }
 
-  selectCategory(cat: 'food' | 'toys' | 'grooming') {
+  selectCategory(cat: 'Food' | 'Toys' | 'Grooming') {
     this.selectedCategory = cat;
     this.loadProducts();
   }

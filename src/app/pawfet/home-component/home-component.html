@@ -1,57 +1,42 @@
 <div class="home-container">
 
-    <div class="inner-container">
-  
-      <header class="home-header">
-        <div class="welcome-text">
-          Welcome back, <strong>{{ username }}</strong>
-        </div>
-        <div class="profile-wrapper">
-          <div class="profile-icon">
-            <img src="assets/usericon.png" alt="User Icon" (click)="toggleDropdown()" />
-          </div>
-  
-          <div class="dropdown" *ngIf="dropdownOpen">
-            <p class="dropdown-username">{{ username }}</p>
-            <button class="logout-btn" (click)="logout()">
-              <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
-          </div>
-        </div>
-      </header>
-  
-      <div class="welcome-card">
-        <img src="assets/puppy.png" alt="Cute Dog" class="dog-image" />
-        <div class="overlay-text">
-          <h2>Welcome to Pawfect DayCare!</h2>
-          <p>Your one-stop solution for pet care.</p>
-        </div>
-      </div>
-  
-      <div class="action-buttons">
-        <button class="primary" (click)="bookDaycare()">
-          <i class="fas fa-paw"></i> Book Daycare
-        </button>
-        <button class="secondary" (click)="shopNow()">
-          <i class="fas fa-shopping-bag"></i> Shop Now
-        </button>
-      </div>
-  
-      <div class="secondary-actions">
-    
-        <button (click)="viewDogProfile()">
-          View Dog Profile <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
-  
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-brand">Welcome {{ capitalize(username) }} </div>
+
+
+    <ul class="navbar-links">
+      <li><a (click)="about()">About Us</a></li>
+      <li><a (click)="contact()">Contact Us</a></li>
+      <li><a (click)="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Image with Overlay Text -->
+  <div class="hero-image">
+    <img src="assets/imgdog.png" alt="Cute Puppy" />
+    <div class="overlay-text">
+      <h1>Welcome to Pawfect DayCare!</h1>
+      <p>Your one-stop solution for pet care</p>
     </div>
-  
-    <!-- <nav class="bottom-nav">
-      <button><i class="fas fa-home"></i><span>Home</span></button>
-      <button><i class="fas fa-calendar-alt"></i><span>Bookings</span></button>
-      <button><i class="fas fa-envelope"></i><span>Messages</span></button>
-      <button><i class="fas fa-user"></i><span>Profile</span></button>
-    </nav> -->
-  
   </div>
-  
+
+  <!-- Three Feature Boxes -->
+  <div class="feature-boxes">
+    <div class="box" (click)="bookDaycare()">
+      <img src="assets/daycare.jpg" alt="Daycare Icon" />
+      <h3>Book Daycare</h3>
+    </div>
+
+    <div class="box" (click)="shopNow()">
+      <img src="assets/shop.jpg" alt="Shop Icon" />
+      <h3>Shop Now</h3>
+    </div>
+
+    <div class="box" (click)="viewDogProfile()">
+      <img src="assets/paw.jpg" alt="Dog Profile Icon" />
+      <h3>Dog Profile</h3>
+    </div>
+  </div>
+
+</div>

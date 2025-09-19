@@ -8,6 +8,8 @@ import { PaymentComponent } from './payment-component/payment-component';
 import { CartComponent } from './cart-component/cart-component';
 import { ShopComponent } from './shop-component/shop-component';
 import { DogProfile } from './dog-profile/dog-profile';
+import { Contact } from './contact/contact';
+import { Aboutus } from './aboutus/aboutus';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent},
   { path: 'cart', component: CartComponent},
   { path: 'dogprofile', component: DogProfile},
+    { path: 'contact', component: Contact},
+     { path: 'about', component: Aboutus},
 
   
 

@@ -10,40 +10,43 @@ import { Authservice } from '../authservice';
   styleUrl: './home-component.css'
 })
 export class HomeComponent implements OnInit {
-  username: string = 'Guest';
-  dropdownOpen: boolean = false;
+   username: string = 'Guest';
 
-  constructor(private router: Router,private auth:Authservice) {}
+  constructor(private router: Router, private auth: Authservice) {}
 
- 
   ngOnInit(): void {
-    const token = localStorage.getItem('auth_token');
-    if (token) {
+   
       this.auth.getUserDetails().subscribe({
         next: (user) => {
-          this.username = user.username;   // ✅ backend response
+          this.username = user.username;
         },
         error: () => {
           this.username = 'Guest';
         }
       });
     }
-  }
-
-  toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
-  }
-
+  
+ capitalize(name: string): string {
+  if (!name) return '';
+  return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+}
   logout() {
     localStorage.removeItem('username');
     localStorage.removeItem('token');
-    this.dropdownOpen = false;
     this.router.navigate(['/pawfetModule/login']);
   }
 
   bookDaycare() {
     this.router.navigate(['/pawfetModule/book-daycare']);
   }
+   contact() {
+    this.router.navigate(['/pawfetModule/contact']);
+  }
+
+   about() {
+    this.router.navigate(['/pawfetModule/about']);
+  }
+
 
   shopNow() {
     this.router.navigate(['/pawfetModule/shop']);
@@ -52,4 +55,5 @@ export class HomeComponent implements OnInit {
   viewDogProfile() {
     this.router.navigate(['/pawfetModule/dogprofile']);
   }
+  
 }

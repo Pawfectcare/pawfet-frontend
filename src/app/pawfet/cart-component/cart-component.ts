@@ -22,29 +22,56 @@ export interface CartItem {
 export class CartComponent implements OnInit {
   
     cart: CartItem[] = [];
-    userId = 1;
+      userId!: number;
   
     constructor(private auth: Authservice, private router: Router) {}
   
     ngOnInit(): void {
-      this.auth.getCart(this.userId).subscribe({
-        next: res => this.cart = res,
-        error: () => this.cart = []
-      });
+       this.auth.getUserDetails().subscribe({
+      next: (user) => {
+        this.userId = user.id;   // ✅ fetch from backend
+        this.loadCart();
+      },
+      error: () => {
+        alert('User not logged in!');
+        this.router.navigate(['/login']);
+      }
+    });
     }
+    loadCart() {
+    this.auth.getCart(this.userId).subscribe({
+      next: res => (this.cart = res),
+      error: () => (this.cart = [])
+    });
+  }
   
     cartTotal(): number {
       return this.cart.reduce((s, i) => s + i.price * i.quantity, 0);
     }
   
     goToPayment() {
-      const cartData = {
-        userId: this.userId,
-        cart: this.cart,
-        total: this.cartTotal()
-      };
-      this.router.navigate(['/pawfetModule/payment'], { state: { cartData } });
-    }
+  const cartData = {
+    userId: this.userId,
+    cart: this.cart.map(i => ({
+      product_name: i.product_name,
+      price: i.price
+    })),
+    total: this.cartTotal()
+  };
+
+this.auth.saveOrder(cartData).subscribe({
+  next: (res) => {
+    alert(`Order placed successfully! ID: ${res.order_id}`);
+    this.router.navigate(
+      ['/pawfetModule/payment'],
+      { state: { orderId: res.order_id, userId: this.userId } }
+    );
+  },
+  error: () => alert('Order failed')
+});
+
+}
+
 
     getImageUrl(productId: number): string {
       const imageUrl = `/assets/product/${productId}.png`;

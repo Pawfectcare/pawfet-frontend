@@ -7,12 +7,12 @@ import { CartItem } from '../pawfet/cart-component/cart-component';
   providedIn: 'root'
 })
 export class Authservice {
-    // Now pointing to API Gateway
+ 
     private apiBase = 'http://localhost:8081/daycare/bookings';
 
     constructor(private http: HttpClient) {}
   
-    // Login still goes to FastAPI (port 8000)
+  
     login(credentials: { username: string; password: string }): Observable<any> {
       const body = new URLSearchParams();
       body.set('username', credentials.username);
@@ -54,9 +54,9 @@ export class Authservice {
       return this.http.get<any[]>(`http://localhost:8082/shop/products/by-category/${category}`);
     }
     
-    // Add item to cart
+
     addToCart(userId: number, productId: number, qty: number) {
-      return this.http.post<any>(`http://localhost:8082/shop/cart`, { 
+      return this.http.post<any>(`http://localhost:8082/shop/cart/`, { 
         user_id: userId, 
         product_id: productId, 
         quantity: qty 
@@ -70,11 +70,15 @@ export class Authservice {
     getCart(userId: number): Observable<CartItem[]> {
       return this.http.get<CartItem[]>(`http://localhost:8082/shop/cart/${userId}`);
     }
+    saveOrder(cartData: any) {
+  return this.http.post<any>('http://localhost:8082/shop/cart/orders', cartData);
+}
+
   
     
-    // Pay for Shop (final order submission)
+    
     payForShopByUserId(userId: number) {
-      return this.http.post<any>(`http://localhost:8082/shop/cart/shop/pay/${userId}`, {});
+      return this.http.post<any>(`http://localhost:8082/shop/cart/pay/${userId}`, {});
     }
     
   }

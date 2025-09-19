@@ -2,19 +2,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    max-height: 100vh;
+   
     background: #f0f2f5;
   }
   
-  .login-box {
+ .login-box {
     display: flex;
+    margin: 80px auto;
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    max-width: 900px;
-    width: 100%;
+    max-width: 1200px; /* Increased from 1100px */
+    width: 95%;        /* Slightly wider */
+    min-height: 680px; /* Ensure minimum height for bigger content area */
     overflow: hidden;
-  }
+    padding: 20px;     /* Optional: Add some padding inside the card */
+}
   
   .login-left, .login-right {
     flex: 1;
@@ -22,8 +26,9 @@
   }
   
   .login-left h1 {
-    font-size: 24px;
+    font-size: 35px;
     font-weight: bold;
+
   }
   
   .login-left h2 {
@@ -49,7 +54,7 @@
   }
   
   .btn-submit {
-    background-color: #1976d2;
+    background-color: #c98c42;
     color: white;
     border: none;
     padding: 12px;
@@ -58,7 +63,7 @@
   }
   
   .btn-submit:hover {
-    background-color: #1565c0;
+    background-color:  #c98c42;
   }
   
   .alternative-login {
@@ -80,7 +85,7 @@
   }
   
   .login-right {
-    background-color: #1976d2;
+    background-color: #c98c42;
     color: white;
     display: flex;
     flex-direction: column;

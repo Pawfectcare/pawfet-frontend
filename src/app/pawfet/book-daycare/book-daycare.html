@@ -1,5 +1,9 @@
 <div class="booking-card">
-  <h2 class="title">Book Dog Daycare</h2>
+  <div class="title">
+  <img src="assets/daycare.jpg" alt="Daycare Icon" class="title-icon" />
+  <h3>Book Daycare</h3>
+</div>
+
 
   <form [formGroup]="bookingForm" (ngSubmit)="goToPayment()" class="booking-form">
 
@@ -36,7 +40,7 @@
       </option>
     </select>
 
-    <!-- Submit -->
-    <button type="submit" (click)="goToPayment()"class="submit-btn">Book Now</button>
+    <!-- Submit Button -->
+    <button type="submit" class="submit-btn">Book Now</button>
   </form>
 </div>

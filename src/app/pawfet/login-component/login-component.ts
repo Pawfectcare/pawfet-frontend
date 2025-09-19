@@ -27,26 +27,7 @@ export class LoginComponent {
     });
   }
 
-  // onSubmit() {
-  //   if (this.loginForm.valid) {
-  //     const username = this.loginForm.value.username;
-  //     const password = this.loginForm.value.password;
-  //     this.authService.login({username,password }).subscribe({
-  //       next: (res) => {
-  //         console.log('Login successful, token:', res.access_token);
-  //         localStorage.setItem('auth_token', res.access_token);
-  //         localStorage.setItem('username', res.username); 
-  //         alert('Login succefull');
-  //         this.router.navigate(['/pawfetModule/home']);
-        
-  //       },
-  //       error: (err) => {
-  //         console.error('Login failed:', err);
-  //         alert('Invalid username or password');
-  //       }
-  //     });
-  //   }
-  // }
+
 
   onSubmit() {
     if (this.loginForm.valid) {
